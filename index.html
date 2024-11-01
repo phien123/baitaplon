@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Villain">
+    <title>Villain Cards</title>
+    <style>
+        body, html {
+            background-image: url("./anh/Background.png");
+    background-size: 181.5vh 100vh;
+    background-repeat: no-repeat;
+    background-position: relative;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .page {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .active {
+            display: flex;
+        }
+
+        
+
+        .welcome-text {
+            font-family: 'fleur';
+    font-size: 150%;
+    letter-spacing: 15px;
+    text-align: center;
+    margin-top: 0%;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+    color: #323232;
+        }
+
+        .villain-text {
+            font-family: 'fleur';
+    font-size: 500%;
+    letter-spacing: 100px;
+    text-align: center;
+    margin-left: 5%;
+    color: rgb(83, 27, 83);
+    transform: translateY(0);
+    transition: transform 1s ease-in-out;
+          
+        }
+        .villain-text1 {
+            font-size: 400%;
+            letter-spacing: 70px;
+            text-align: center;
+            margin-left: 5%;
+            margin-top: 3%;
+            color: rgb(83, 27, 83);
+        }
+        
+        .card-image, .small-card {
+            margin-left: 0%;
+            margin-top: 0%;
+            width: 190px;
+            height: 290px;
+            border-radius: 10px;
+            
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .small-card:hover {
+            transform: scale(0.95);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .info {
+            font-size: 1.2rem;
+            color: #2d4059;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #5c3d68;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #4b2e56;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Trang 1 -->
+    <div class="page active" id="page-1">
+        <div class="container">
+            <div class="welcome-text" id="wellcome"><i><b>Welcome to family</b></i></div>
+            <div class="villain-text" id="villain"><i><b>Villain</b></i></div>
+        </div>
+    </div>
+
+    <!-- Trang 2 -->
+    <div class="page" id="page-2">
+        <div class="container">
+            <div class="villain-text1"><i><b>Villain</b></i></div>
+            <p><img class="card-image" id="single-card" src="anh/1.png" alt="Card 2"></p>
+        </div>
+    </div>
+
+    <!-- Trang 3 -->
+    <div class="page" id="page-3">
+        <div class="container">
+            <div class="villain-text1"><i><b>Villain</b></i></div>
+            <div class="cards-container" id="cards-container">
+                <p><img class="small-card" src="anh/1.png" alt="Card 1"></p>
+                <p><img class="small-card" src="anh/2.png" alt="Card 2"></p>
+                <p><img class="small-card" src="anh/3.png" alt="Card 3"></p>
+                <p><img class="small-card" src="anh/4.png" alt="Card 4"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trang 4 -->
+    <div class="page" id="page-4">
+        <div class="container">
+            <div class="villain-text1"><i><b>Villain</b></i></div>
+            <div class="cards-container">
+                <p><img class="small-card" src="anh/Châu.jpg" alt="Portrait 1" data-info="1"></p>
+                <p><img class="small-card" src="anh/Dịu.jpg" alt="Portrait 2" data-info="2"></p>
+                <p><img class="small-card" src="anh/Huyên.jpg" alt="Portrait 3" data-info="3"></p>
+                <p><img class="small-card" src="anh/Quỳnh.jpg" alt="Portrait 4" data-info="4"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trang 5 -->
+    <div class="page" id="page-5">
+        <div class="container">
+            <p><img class="card-image" id="portrait" src="" alt="Character Portrait" style="width: 200px; height: 300px;"></p>
+            <div class="info" id="character-info">
+                <!-- Thông tin nhân vật sẽ được thêm vào đây -->
+            </div>
+            <button class="back-button" id="back-button">Quay lại</button>
+        </div>
+    </div>
+
+    <script>
+        const characterInfo = {
+            1: { 
+                name: "Nguyễn Hà Châu",
+                birthdate: "20/07/2005",
+                gender: "Nữ",
+                job: "CNTT D2023A",
+                symbol: "Đại học Thủ Đô Hà Nội",
+                hometown: "Hà Tĩnh",
+                hobbies: "Chơi game và nghe nhạc",
+                portrait: "anh/Châu.jpg",
+            },
+            2: { 
+                name: "Nguyễn Thị Thanh Dịu",
+                birthdate: "17/05/2005",
+                gender: "Nữ",
+                job: "CNTT D2023B",
+                symbol: "Đại học Thủ Đô Hà Nội",
+                hometown: "Hà Nội",
+                hobbies: "Nghe nhạc, đọc truyện, xem phim",
+                portrait: "anh/Dịu.jpg",
+            },
+            3: { 
+                name: "Nguyễn Thị Huyên",
+                birthdate: "13/8/2005",
+                gender: "Nữ",
+                job: "CNTT D2023A",
+                symbol: "Đại học Thủ Đô Hà Nội",
+                hometown: "Hà Nội",
+                hobbies: "Nghe nhạc, đọc sách",
+                portrait: "anh/Huyên.jpg"
+            }, 
+            4: { 
+                name: "Mai Thị Như Quỳnh",
+                birthdate: "22/10/2005",
+                gender: "Nữ",
+                job: "CNTT D2023A",
+                symbol: "Đại học Thủ Đô Hà Nội",
+                hometown: "Hà Nội",
+                hobbies: "Xem phim, đọc sách",
+                portrait: "anh/Quỳnh.jpg"
+            },
+        };
+
+        function goToPage(pageNumber) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(`page-${pageNumber}`).classList.add('active');
+        }
+
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById("wellcome").style.opacity = "0";
+                document.getElementById("villain").style.transform = "translateY(-50px)";
+                document.getElementById("photo").style.opacity = "1";
+            }, 1000);
+
+            setTimeout(() => goToPage(2), 3000);
+
+            document.getElementById("single-card").addEventListener("click", () => goToPage(3));
+
+            setTimeout(() => goToPage(4), 6000);
+
+            document.querySelectorAll(".cards-container .small-card").forEach(card => {
+                card.addEventListener("click", function() {
+                    const infoId = this.getAttribute("data-info");
+                    const info = characterInfo[infoId];
+                    document.getElementById("character-info").innerHTML = `
+                        <p>Họ và tên: <strong>${info.name}</strong></p>
+                        <p>Ngày sinh: <strong>${info.birthdate}</strong></p>
+                        <p>Giới tính: <strong>${info.gender}</strong></p>
+                        <p>Lớp: <strong>${info.job}</strong></p>
+                        <p>Trường: <strong>${info.symbol}</strong></p>
+                        <p>Quê quán: <strong>${info.hometown}</strong></p>
+                        <p>Sở thích: <strong>${info.hobbies}</strong></p>
+                    `;
+                    // Cập nhật ảnh chân dung
+                    document.getElementById("portrait").src = info.portrait;
+                    goToPage(5);
+                });
+            });
+
+            // Thêm sự kiện cho nút quay lại
+            document.getElementById("back-button").addEventListener("click", () => {
+                goToPage(4);
+            });
+        };
+    </script>
+</body>
+</html>
